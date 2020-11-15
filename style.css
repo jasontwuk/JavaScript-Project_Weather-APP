@@ -3,7 +3,7 @@
 Fonts
 ===============
 */
-@import url("https://fonts.googleapis.com/css?family=Ubuntu|Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu|Varta&display=swap");
 
 /*
 =============== 
@@ -43,7 +43,7 @@ Variables
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
   --clr-black: #222;
-  --ff-primary: "Varela Round", sans-serif;
+  --ff-primary: "Varela", sans-serif;
   --ff-secondary: "Ubuntu", sans-serif;
   --transition: all 0.3s linear;
   --spacing: 0.25rem;
@@ -67,7 +67,7 @@ Global Styles
   box-sizing: border-box;
 }
 body {
-  font-family: var(--ff-secondary);
+  font-family: var(--ff-primary);
   background: var(--clr-primary-10);
   color: var(--clr-grey-1);
   line-height: 1.5;
@@ -80,7 +80,7 @@ a {
   text-decoration: none;
 }
 img:not(.logo) {
-  /* width: 100%; */
+  width: 100%;
 }
 img {
   display: block;
@@ -109,7 +109,6 @@ h4 {
   font-size: 0.875rem;
 }
 p {
-  margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
 
@@ -174,14 +173,25 @@ weather-container
   text-align: center;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(
+    to top,
+    #000080,
+    #031d97,
+    #0533ae,
+    #0649c5,
+    #095edb
+  );
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 3.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 .weather-container h4 {
   text-align: center;
+  color: #fff;
 }
 
-.weather-container img {
-  margin: 0 auto;
-}
 .weather-container p {
   text-align: center;
 }
@@ -193,15 +203,260 @@ weather-container
 
 /*
 =============== 
+location form
+===============
+*/
+.location-update-container,
+.location-submit-container {
+  align-items: center;
+  justify-content: center;
+}
+.location-update-container h4 {
+  font-size: 2rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+.location-submit-btn,
+.location-update-btn {
+  background: var(--clr-primary-8);
+  border-color: transparent;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.4rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  content: var(--clr-primary-5);
+  transition: var(--transition);
+  font-size: 1rem;
+}
+.location-submit-btn:hover,
+.location-update-btn:hover {
+  background: var(--clr-primary-5);
+}
+.location-submit-btn i,
+.location-update-btn i {
+  color: var(--clr-black);
+  font-size: 0.85rem;
+  width: 0.85rem;
+  margin-bottom: 0;
+}
+.location-submit-btn:hover i,
+.location-update-btn:hover i {
+  color: var(--clr-white);
+}
+.location-input {
+  padding: 0.25rem;
+  background: var(--clr-white);
+  border-radius: var(--radius);
+  border-color: transparent;
+  font-size: 1rem;
+  color: var(--clr-grey-5);
+  width: 60%;
+}
+.location-input::placeholder {
+  font-family: var(--ff-secondary);
+  color: var(--clr-grey-8);
+}
+
+.location-form .location-update-container {
+  display: flex;
+}
+.location-form .location-submit-container {
+  display: none;
+}
+.location-form.show-location-submit .location-update-container {
+  display: none;
+}
+.location-form.show-location-submit .location-submit-container {
+  display: flex;
+}
+
+/*
+=============== 
+status-container
+===============
+*/
+.status-container {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  letter-spacing: var(--spacing);
+}
+
+.status-container-left {
+  flex: 50%;
+  border-right: 1px solid #fff;
+}
+.status-container-right {
+  flex: 50%;
+}
+
+.status-icon-temp {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.status-icon-temp p {
+  flex: 50%;
+  font-size: 2rem;
+  color: #fff;
+}
+.status-icon-temp p i {
+  font-size: 4rem;
+}
+.day-temperture-feels-like {
+  font-size: 1rem;
+  margin-top: 0.5em;
+  color: #00ffd8;
+}
+
+.weather-text {
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
+  color: #ff60ff;
+}
+.day-temperture-high {
+  font-size: 1.2rem;
+  color: #ffd700;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+.day-temperture-low {
+  font-size: 1.2rem;
+  color: #00d7ff;
+}
+
+/*
+=============== 
 forecast-list
 ===============
 */
 .list-item-title {
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid var(--clr-grey-8);
+  margin-top: 0.5rem;
+}
+.list-item-title:nth-child(7) {
+  border-bottom: none;
+}
+
+.list-item-title .date {
+  flex: 50%;
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .week-tempture-container {
   display: flex;
   justify-content: center;
+  font-size: 1.2rem;
+}
+.week-tempture-icon {
+  color: navy;
+  padding-right: 0.5rem;
+}
+.week-tempture-max {
+  color: #ffae00;
+  padding-right: 0.5rem;
+}
+.week-tempture-min {
+  color: #ffae00;
+  padding-right: 0.5rem;
+  color: #007bff;
+}
+
+/*
+=============== 
+message container
+===============
+*/
+.message-container {
+  display: none;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 2rem;
+  flex-direction: column;
+}
+.message-container.show-message {
+  display: flex;
+}
+
+.message-container p {
+  margin-bottom: 0.5rem;
+  color: var(--clr-white);
+}
+.message-btn {
+  border-color: transparent;
+  align-items: center;
+  padding: 0.25rem 3.2rem;
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  border-radius: var(--radius);
+  cursor: pointer;
+  content: var(--clr-primary-5);
+  transition: var(--transition);
+  font-size: 2rem;
+  background: var(--clr-primary-8);
+}
+.message-btn:hover {
+  background: var(--clr-primary-5);
+  color: var(--clr-white);
+}
+
+/*
+=============== 
+responsive
+===============
+*/
+@media screen and (min-width: 992px) {
+  .section-center {
+    width: 95vw;
+  }
+}
+@media screen and (max-width: 620px) {
+  .section-center {
+    width: 95vw;
+    padding: 1rem 0.5rem;
+    margin: 1rem auto;
+  }
+  .message-container {
+    font-size: 1.5rem;
+  }
+  .message-btn {
+    font-size: 1.5rem;
+  }
+
+  .status-icon-temp p {
+    font-size: 1.5rem;
+  }
+  .status-icon-temp p i {
+    font-size: 3rem;
+  }
+  .day-temperture-feels-like {
+    font-size: 0.75rem;
+  }
+
+  .weather-text {
+    font-size: 1rem;
+  }
+  .day-temperture-high {
+    font-size: 1rem;
+  }
+  .day-temperture-low {
+    font-size: 1rem;
+  }
 }
