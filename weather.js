@@ -20,6 +20,10 @@ const locationForm = document.getElementById("location-form");
 const locationInput = document.getElementById("location-input");
 const locationUpdateBtn = document.getElementById("location-update-btn");
 const locationSubmitBtn = document.getElementById("location-submit-btn");
+const locationCloseBtn = document.getElementById("location-close-btn");
+
+// !!! city dropdown list (google places api & Maps JavaScript API)
+const searchBox = new google.maps.places.SearchBox(locationInput);
 
 const messageContainer = document.getElementById("message-container");
 const messageBtn = document.getElementById("message-btn");
@@ -46,9 +50,13 @@ locationUpdateBtn.addEventListener("click", locationUpdate);
 
 locationSubmitBtn.addEventListener("click", locationSubmit);
 
+locationCloseBtn.addEventListener("click", locationClose);
+
 messageBtn.addEventListener("click", closeMessage);
 
 locationInput.addEventListener("keyup", submitByClickEnterBtn);
+
+searchBox.addEventListener("places_changed", cityList);
 
 // ****** FUNCTIONS **********
 function getDayApi() {
@@ -59,7 +67,7 @@ function getDayApi() {
     "&units=metric&APPID=" +
     apiId;
 
-  // !!! use city name to fetch its today's weather
+  // !!! use city name to fetch today's weather
   fetch(apiCity)
     .then((response) => response.json())
     .then((data) => {
@@ -92,14 +100,14 @@ function getDayApi() {
       }
     })
     .catch(() => {
-      // !!! when a user enters an invalid city name, show the message
+      // !!! when the user enters an invalid city name, show the message
       messageContainer.classList.add("show-message");
       messageBtn.focus();
     });
 }
 
 function getWeekApi() {
-  // !!! use lat and lon value to fetch another api to get future week's forecast
+  // !!! use lat and lon value to fetch a future week's forecast data from the api again
   const apiWeekly =
     "http://api.openweathermap.org/data/2.5/onecall?lat=" +
     lat +
@@ -149,7 +157,7 @@ function addDay(num) {
   return date;
 }
 
-// !!! get an array of future week
+// !!! get an array of the future week
 function futureDays() {
   for (let i = 1; i < 8; i++) {
     let newDate = addDay(i);
@@ -164,7 +172,7 @@ function futureDays() {
   return futureWeek;
 }
 
-// !!! for getting day or night value, it uses in getDayApi() to get icon name
+// !!! for getting day or night value, it is used in getDayApi() to get the icon name
 function getDayNight() {
   const now = new Date();
   let hour = now.getHours();
@@ -193,12 +201,17 @@ function locationSubmit(e) {
   locationForm.classList.remove("show-location-submit");
 }
 
+function locationClose(e) {
+  e.preventDefault();
+  locationForm.classList.remove("show-location-submit");
+}
+
 // !!! when a user clicks the messageBtn
 function closeMessage() {
   messageContainer.classList.remove("show-message");
 }
 
-// !!! let users triger locationSubmitBtn by enter key
+// !!! let users trigger locationSubmitBtn by the enter key
 function submitByClickEnterBtn(e) {
   // Number 13 is the "Enter" key on the keyboard
   if (e.keyCode === 13) {
@@ -206,6 +219,14 @@ function submitByClickEnterBtn(e) {
     e.preventDefault();
     // Trigger locationSubmitBtn with a click
     locationSubmitBtn.click();
+  }
+}
+
+// !!! for city dropdown list
+function cityList() {
+  const place = searchBox.getPlaces();
+  if (place == null) {
+    return;
   }
 }
 
