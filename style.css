@@ -217,6 +217,7 @@ location form
   margin-bottom: 0;
 }
 .location-submit-btn,
+.location-close-btn,
 .location-update-btn {
   background: var(--clr-primary-8);
   border-color: transparent;
@@ -229,11 +230,19 @@ location form
   transition: var(--transition);
   font-size: 1rem;
 }
+.location-close-btn {
+  background: var(--clr-red-light);
+}
 .location-submit-btn:hover,
+.location-close-btn:hover,
 .location-update-btn:hover {
   background: var(--clr-primary-5);
 }
+.location-close-btn:hover {
+  background: var(--clr-red-dark);
+}
 .location-submit-btn i,
+.location-close-btn i,
 .location-update-btn i {
   color: var(--clr-black);
   font-size: 0.85rem;
@@ -241,11 +250,12 @@ location form
   margin-bottom: 0;
 }
 .location-submit-btn:hover i,
+.location-close-btn:hover i,
 .location-update-btn:hover i {
   color: var(--clr-white);
 }
 .location-input {
-  padding: 0.25rem;
+  padding: 0.44rem 0.25rem;
   background: var(--clr-white);
   border-radius: var(--radius);
   border-color: transparent;
@@ -340,7 +350,7 @@ forecast-list
   border-bottom: 1px solid var(--clr-grey-8);
   margin-top: 0.5rem;
 }
-.list-item-title:nth-child(7) {
+.list-item-title:last-child {
   border-bottom: none;
 }
 
@@ -362,11 +372,13 @@ forecast-list
 .week-tempture-max {
   color: #ffae00;
   padding-right: 0.5rem;
+  font-weight: bold;
+  letter-spacing: var(--spacing);
 }
 .week-tempture-min {
-  color: #ffae00;
-  padding-right: 0.5rem;
   color: #007bff;
+  padding-right: 0.5rem;
+  letter-spacing: var(--spacing);
 }
 
 /*
