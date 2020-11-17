@@ -1,0 +1,27 @@
+{
+  "name": "javascript-project_weather-app",
+  "version": "1.0.0",
+  "description": "This is a weather app that shows today's and the future week's weather. London is the default city, you can change it to any city you like by clicking the edit button on the right. It will show your latest chosen city when you reopen the app next time.",
+  "main": "weather.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasontwuk/JavaScript-Project_Weather-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasontwuk/JavaScript-Project_Weather-App/issues"
+  },
+  "homepage": "https://github.com/jasontwuk/JavaScript-Project_Weather-App#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
+}
