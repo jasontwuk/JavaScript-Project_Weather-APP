@@ -36,7 +36,7 @@ const dayTempertureLow = document.getElementById("day-temperture-low");
 
 const forecastList = document.getElementById("forecast-list");
 
-let city, dayOrNight;
+let cityName, latitude, longitude, dayOrNight;
 
 // ****** EVENT LISTENERS **********
 window.addEventListener("DOMContentLoaded", initializeApp);
@@ -50,20 +50,23 @@ searchBox.addListener("places_changed", getWeatherData);
 
 // ****** FUNCTIONS **********
 // !!! for city dropdown list
-function getWeatherData() {
+async function getWeatherData() {
   // !!! set London as the default city
-  let latitude = 51.51;
-  let longitude = -0.13;
+  latitude = 51.51;
+  longitude = -0.13;
   let googlePlaceData = [];
-  city = "London";
+  cityName = "London";
+
+  // !!! set cityName, latitude, longitude to the user's chosen city from their last use of this APP
+  checkLocalstorage();
 
   // !!! when the user already enter something in the input
   // console.log(locationInput.value);
   if (locationInput.value) {
     googlePlaceData = searchBox.getPlaces()[0];
     // console.log(googlePlaceData);
-    // !!! change city to user's chosen city
-    city = googlePlaceData.name;
+    // !!! change cityName to user's chosen cityName
+    cityName = googlePlaceData.name;
     if (googlePlaceData != null) {
       latitude = googlePlaceData.geometry.location.lat();
       longitude = googlePlaceData.geometry.location.lng();
@@ -71,7 +74,7 @@ function getWeatherData() {
   }
 
   // !!! get data from weather api
-  fetch("/weather", {
+  await fetch("/weather", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -85,17 +88,18 @@ function getWeatherData() {
     .then((res) => res.json())
     .then((data) => {
       // console.log(data);
-      displayWeatherData(data, city);
-      addToLocalStorage(city);
+      displayWeatherData(data, cityName);
+      let value = { cityName, latitude, longitude };
+      // console.log(value);
+      addToLocalStorage("city", value);
       locationInput.value = "";
       locationForm.classList.remove("show-location-submit");
     });
 }
 
 // !!! display weather data
-function displayWeatherData(data, city) {
+function displayWeatherData(data, cityName) {
   // !!! for status container
-  // const cityName = data.name;
   const { description, id } = data.current.weather[0];
   const iconId = "wi-owm-" + dayOrNight + "-" + id;
   // console.log(iconId);
@@ -103,7 +107,7 @@ function displayWeatherData(data, city) {
   const { max, min } = data.daily[0].temp;
   const dataDays = data.daily;
 
-  weatherLocation.textContent = city;
+  weatherLocation.textContent = cityName;
   weatherIcon.innerHTML = `<i class="wi ${iconId}"></i>`;
   dayTempertureNow.innerHTML = Math.round(temp) + "&#8451;";
   dayTempertureFeelsLike.innerHTML = `feels like ${Math.round(
@@ -193,12 +197,16 @@ function closeLocationUpdate(e) {
 }
 
 // ****** LOCAL STORAGE **********
-function addToLocalStorage(value) {
-  localStorage.setItem("city", JSON.stringify(value));
+function addToLocalStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
 function checkLocalstorage() {
   if (localStorage.getItem("city")) {
-    city = JSON.parse(localStorage.getItem("city"));
+    let city = JSON.parse(localStorage.getItem("city"));
+    // console.log(city);
+    cityName = city.cityName;
+    latitude = city.latitude;
+    longitude = city.longitude;
   }
 }
 
