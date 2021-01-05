@@ -1,70 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Project_Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- font-awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <!-- weather icons -->
-    <link rel="stylesheet" href="weather-icons.min.css">
+    <link rel="stylesheet" href="weather-icons.min.css" />
     <!-- city dropdown list (google places api & Maps JavaScript API) -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMrP_sbwgr7LPKWvz7If7nD7VF77eKou4&libraries=places"></script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMrP_sbwgr7LPKWvz7If7nD7VF77eKou4&libraries=places"
+    ></script>
     <script src="weather.js" defer></script>
-</head>
-<body>
-    <section class="section-center">
+  </head>
+  <body>
+    <div class="pattern">
+      <section class="section-center">
         <h3>Weather APP</h3>
         <!-- weather container -->
         <div class="weather-container">
-            <!-- location form -->
-            <form class="location-form" id="location-form">
-                <div class="location-update-container">
-                    <h4 class="weather-location" id="weather-location">London</h4>
-                    <button type="submit" class="location-update-btn" id="location-update-btn">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-                <div class="location-submit-container">
-                    <input type="text" class="location-input" id="location-input" placeholder="Search City">
-                </div>
-            </form>
-
-            <!-- status container -->
-            <div class="status-container">
-                <div class="status-container-left">
-                    <div class="status-icon-temp">
-                        <p id="weather-icon"><i class="wi wi-owm-800"></i></p> 
-                        <p class="day-temperture-now" id="day-temperture-now">TBD</p>
-                    </div>
-                    <p class="day-temperture-feels-like" id="day-temperture-feels-like">feels like TBD&#8451;</p>
-                </div>
-                <div class="status-container-right">
-                    <p class="weather-text" id="weather-text">TBD</p>
-                    <div class="day-tempture-container">
-                        <p class="day-temperture-high" id="day-temperture-high">TBD</p>
-                        <p class="day-temperture-low" id="day-temperture-low">TBD</p> 
-                    </div>
-                </div>
+          <!-- location form -->
+          <form class="location-form" id="location-form">
+            <div class="location-update-container">
+              <h4 class="weather-location" id="weather-location">London</h4>
+              <button
+                type="submit"
+                class="location-update-btn"
+                id="location-update-btn"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
             </div>
+            <div class="location-submit-container">
+              <input
+                type="text"
+                class="location-input"
+                id="location-input"
+                placeholder="Search City"
+              />
+            </div>
+          </form>
+
+          <!-- status container -->
+          <div class="status-container">
+            <div class="status-container-left">
+              <div class="status-icon-temp">
+                <p id="weather-icon"><i class="wi wi-owm-800"></i></p>
+                <p class="day-temperture-now" id="day-temperture-now">TBD</p>
+              </div>
+              <p
+                class="day-temperture-feels-like"
+                id="day-temperture-feels-like"
+              >
+                feels like TBD&#8451;
+              </p>
+            </div>
+            <div class="status-container-right">
+              <p class="weather-text" id="weather-text">TBD</p>
+              <div class="day-tempture-container">
+                <p class="day-temperture-high" id="day-temperture-high">TBD</p>
+                <p class="day-temperture-low" id="day-temperture-low">TBD</p>
+              </div>
+            </div>
+          </div>
         </div>
-        
+
         <!-- forecast list -->
         <div class="forecast-list" id="forecast-list">
-            <!-- .list-item-title goes there -->
-            <article class="list-item-title">
-                <div class="date">TBD</div>
-                <div class="week-tempture-container">
-                    <p class="week-tempture-icon"><i class="wi wi-owm-800"></i></p>
-                    <p class="week-tempture-max">TBD&#8451;</p>
-                    <p class="week-tempture-min">TBD&#8451;</p>
-                </div>
-            </article>
+          <!-- .list-item-title goes there -->
+          <article class="list-item-title">
+            <div class="date">TBD</div>
+            <div class="week-tempture-container">
+              <p class="week-tempture-icon"><i class="wi wi-owm-800"></i></p>
+              <p class="week-tempture-max">TBD&#8451;</p>
+              <p class="week-tempture-min">TBD&#8451;</p>
+            </div>
+          </article>
         </div>
-    </section>
-</body>
+      </section>
+    </div>
+  </body>
 </html>
