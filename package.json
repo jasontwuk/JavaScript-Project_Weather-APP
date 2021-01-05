@@ -4,7 +4,8 @@
   "description": "This is a weather app that shows today's and the future week's weather. London is the default city, you can change it to any city you like by clicking the edit button on the right. It will show your latest chosen city when you reopen the app next time.",
   "main": "weather.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "build": "nodemon server.js"
   },
   "repository": {
     "type": "git",
